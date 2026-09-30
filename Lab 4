@@ -9,13 +9,50 @@
 
 
 #include <iostream>
+#include <random>
+#include <string>
 #include <fstream>
+#include <iomanip>
+#include <unordered_set>
 
 using namespace std;
 
-//global function required track all books
-//static int borrowBook = bookCount + 1
+static int totalTransactions = 0;
+static int totalBooksBorrowed = 0;
 
+int generateUserID() {
+    static unordered_set<int> assignedIDs;
+    static random_device rd;
+    static mt19937 gen(rd());
+    uniform_int_distribution<int> distrib(1000, 1005);
+        int id;
+    do {
+        id = distrib(gen);
+    } while (assignedIDs.count(id) > 0);
+
+    assignedIDs.insert(id);
+    return id;
+}
+
+
+
+void borrowBook(int& bookCount){
+ bookCount++;
+}
+// 	ofstream fout("project1.txt");
+void log (int uid, int bookCount){
+    ofstream fout("project1.txt", ios::app);
+    fout << "user ID: " << setw(20) << setfill('.') << uid << endl;
+    fout << "books Borrowed" << setw(20) << setfill('.') << bookCount << endl << endl;
+
+    totalTransactions++;
+    totalBooksBorrowed += bookCount;
+//    fout << "A total of " << totalBooksBorrowed << " were check out today.";
+}
+
+void report(){
+    cout << "A total of " << totalBooksBorrowed << " were checked out today.";
+}
 
 int main()
 {
@@ -67,15 +104,4 @@ int main()
     report();
 
     return 0;
-}
-
-void test()
-{
-istream fin("Lab4DOc.txt");
-
-cout <<  "bread";
-
-
-
-
 }
