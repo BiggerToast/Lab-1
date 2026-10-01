@@ -21,17 +21,8 @@ static int totalTransactions = 0;
 static int totalBooksBorrowed = 0;
 
 int generateUserID() {
-    static unordered_set<int> assignedIDs;
-    static random_device rd;
-    static mt19937 gen(rd());
-    uniform_int_distribution<int> distrib(1000, 1005);
-        int id;
-    do {
-        id = distrib(gen);
-    } while (assignedIDs.count(id) > 0);
-
-    assignedIDs.insert(id);
-    return id;
+    static int nextID = 1001;
+    return nextID++;
 }
 
 
@@ -47,10 +38,13 @@ void log (int uid, int bookCount){
 
     totalTransactions++;
     totalBooksBorrowed += bookCount;
-//    fout << "A total of " << totalBooksBorrowed << " were check out today.";
 }
 
 void report(){
+    ofstream fout("project1.txt", ios::app);
+    fout << "A total of " << totalBooksBorrowed << " were check out today.";
+
+    
     cout << "A total of " << totalBooksBorrowed << " were checked out today.";
 }
 
