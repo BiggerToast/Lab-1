@@ -1,0 +1,72 @@
+/////////////////////////////////////////////////////////////////////
+// Name: Esequiel Casillas
+// Date: 10/13/2026
+// Class: CSCI 1470.0X
+// Semester: Fall 2026
+// CSCI 1470 Instructor: Dr. Jonatan Reyes
+// Program Description: Calls a random patient and mesures there height and weight
+/////////////////////////////////////////////////////////////////////
+#include <iostream>
+#include <iomanip>
+#include <fstream>
+#include <string>
+using namespace std;
+
+void patient();
+int main()
+{
+    int number;
+    
+    cout << "How many patients do you want process today: ";
+    cin >> number;
+    
+    cout << endl << endl;
+    
+    
+    if(number <= 0){
+    cout << "No patients today" << endl;
+    }
+    else {
+    for (int i = 1; i <= number; i++){
+    cout << "Enter the patient's name (#" << i << ") ";
+    patient();
+    }
+    }
+    
+    cout << endl;
+    cout << "thank you for using out system.";
+    return 0;
+}
+
+void patient(){
+    string name;
+    double weight;
+    double height;
+    double BMI;
+    cout << ": ";
+    cin.ignore();
+    getline(cin, name);
+    cout << "Enter weights in kilograms: ";
+    cin >> weight;
+    cout << "Enter height in centimeters: ";
+    cin >> height;
+    double heightInMeters = height / 100.0;
+    BMI = weight / (heightInMeters * heightInMeters);
+    
+    cout << fixed << setprecision(2);
+    cout << name << "'s BMI is: " << BMI << endl;
+    
+    if (BMI >= 1 && BMI <= 18.5) {
+        cout << "The BMI classification is underweight" << endl;
+    }
+    else if (BMI >= 18.6 && BMI <= 24.9) {
+        cout << "The BMI classification is normal " << endl;
+    }
+    else if (BMI >= 25 && BMI <= 29.9) {
+        cout << "The BMI classification is overweight" << endl;
+    }
+    else {
+        cout << "The BMI classification is Obese" << endl;
+    }
+    
+}
