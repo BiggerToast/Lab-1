@@ -4,7 +4,7 @@
 // Class: CSCI 1470.0X
 // Semester: Fall 2026
 // CSCI 1470 Instructor: Dr. Jonatan Reyes
-// Program Description: Calls a random patient and mesures there height and weight
+// Program Description: Calls a patient and mesures there height and weight
 /////////////////////////////////////////////////////////////////////
 #include <iostream>
 #include <iomanip>
