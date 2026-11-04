@@ -18,7 +18,25 @@ using namespace std::chrono;
 
     const bool debug = true;
     
-    void initializeBook(string word[], int size);
+    void initializeBook(string word[], int size){
+        for (int i = 0; i < size; i++) {
+            word[i] = "";
+        }
+    }
+    bool loading(string point[], int size, string dictionary_small.txt){
+        ifstream fin(dictionary_small.txt);
+        if (!fin.is_open()) {
+        return false;
+    }
+    string tempWord;
+    int r = 0;
+    while (r < size && fin >> tempWord) {
+        word[r] = tempWord;
+        r++;
+    }
+    fin.close();
+    return true;
+    }
 
 int main() {
     auto start = high_resolution_clock::now();
@@ -26,13 +44,18 @@ int main() {
     const int index = 1000;
     string dictinary[index];
     
-        cout << setfill('*') << setw(30) << "" << endl;
+    auto startInit = high_resolution_clock::now();
+    initializeBook(dictinary, index);
+    auto endInit = high_resolution_clock::now();
 
     if (debug == true){
+        cout << setfill('*') << setw(30) << "" << endl;
         cout << "1000 words on a small dictinary" << endl;
         cout << setfill('*') << setw(30) << "" << endl;
         
-        
+    auto durationInit = duration_cast<microseconds>(endInit - startInit).count();
+    cout << "initialization took: " << durationInit << " microseconds" << endl;
+    
     ifstream fin("dictionary_small.txt");
     string words;
     
@@ -46,15 +69,13 @@ int main() {
         
     auto end = high_resolution_clock::now();    // record time after execution
 
-    auto duration = duration_cast<microseconds>(end - start).count();
-    cout << "initialization took: " << duration << " microseconds" << endl;
-    
         
   
     }
     else{
+        cout << setfill('*') << setw(30) << "" << endl;
         cout << "the debugger is offline" << endl;
-        cout << setfill('*') << setw(30) << endl;
+        cout << setfill('*') << setw(30) << "" << endl;
     }
 
 
