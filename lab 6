@@ -1,0 +1,71 @@
+/////////////////////////////////////////////////////////////////////
+// Name: Esequiel Casillas
+// Date: 11/3/2026
+// Class: CSCI 1470.0X
+// Semester: Fall 2026
+// CSCI 1470 Instructor: Dr. Jonatan Reyes
+// Program Description: 
+///////////////////////////////////////////////////////////////////// 
+#include<iostream>
+#include<iomanip>
+#include<fstream>
+#include <chrono>
+
+using namespace std;
+using namespace std::chrono;
+
+
+    const bool debug = true;
+    
+    void initializeBook(string word[], int size);
+
+int main() {
+    auto start = high_resolution_clock::now();
+    
+    const int index = 1000;
+    string dictinary[index];
+    
+
+    if (debug == true){
+        
+    cout << setw(30) << setfill('*') << endl;
+    cout << "these are 1000 words from a small dictinary" << endl;
+    cout << setw(30) << setfill('*') << endl << endl;
+        
+    ifstream fin("dictionary_small.txt");
+    string words;
+    
+        int r = 0;
+        while(r < index && fin >> words) {
+            dictinary[r] = words;
+            cout << r << " " << words << " " << endl; 
+            r++;
+        }
+        fin.close();
+        
+        
+  
+    }
+    else{
+        cout << "the debugger is offline" << endl;
+        cout << setw(30) << setfill('*') << endl;
+    }
+
+
+
+
+    //for (int i = 0; i < 19000; i++) { 
+    //    cout << "i: " << i << '\n'; 
+    //}  
+
+    //auto end = high_resolution_clock::now();    // record time after execution
+
+    //duration<double> elapsed = end - start;
+
+    //cout << setprecision(2) << fixed << showpoint;
+    //cout << "seconds since start: " << elapsed.count() << '\n';
+    
+    cout << "Loaded " << index << " words from small dictinary";
+
+	return 0;
+}
