@@ -1,58 +1,4 @@
-/////////////////////////////////////////////////////////////////////
-// Name: Esequiel Casillas
-// Date: 11/3/2026
-// Class: CSCI 1470.0X
-// Semester: Fall 2026
-// CSCI 1470 Instructor: Dr. Jonatan Reyes
-// Program Description: 
-///////////////////////////////////////////////////////////////////// 
-#include<iostream>
-#include<iomanip>
-#include<fstream>
-#include <chrono>
-#include <string>
-
-using namespace std;
-using namespace std::chrono;
-
-
-    const bool debug = true;
-    
-    void initializeBook(string word[], int size){
-        for (int i = 0; i < size; i++) {
-            word[i] = "";
-        }
-    }
-    bool loading(string point[], int size, string dictionary_small){
-        ifstream fin("dictionary_small.txt");
-        if (!fin.is_open()) {
-        return false;
-    }
-    string tempWord;
-    int r = 0;
-    while (r < size && fin >> tempWord) {
-        point[r] = tempWord;
-        r++;
-    }
-    fin.close();
-    return true;
-    }
-    
-    void printDictionary(string arr[], int size){
-    for (int r = 0; r < size; r++){}
-    }
-    
-    int countWords(string arr[], int size) {
-    int count = 0;
-    for (int i = 0; i < size; i++) {
-        if (arr[i] != "") {
-            count++;
-        }
-    }
-    return count;
-    }
-
-int main() {
+{
     auto start = high_resolution_clock::now();
     
     const int index = 1000;
@@ -66,7 +12,7 @@ int main() {
     bool loaded = loading(dictinary, index, "dictionary_small.txt");
     auto endLoad = high_resolution_clock::now();
 
-    if (debug == true){
+if (debug == true){
         cout << setfill('*') << setw(30) << "" << endl;
         cout << "1000 words on a small dictinary" << endl;
         cout << setfill('*') << setw(30) << "" << endl;
