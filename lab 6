@@ -23,19 +23,33 @@ using namespace std::chrono;
             word[i] = "";
         }
     }
-    bool loading(string point[], int size, string dictionary_small.txt){
-        ifstream fin(dictionary_small.txt);
+    bool loading(string point[], int size, string dictionary_small){
+        ifstream fin("dictionary_small.txt");
         if (!fin.is_open()) {
         return false;
     }
     string tempWord;
     int r = 0;
     while (r < size && fin >> tempWord) {
-        word[r] = tempWord;
+        point[r] = tempWord;
         r++;
     }
     fin.close();
     return true;
+    }
+    
+    void printDictionary(string arr[], int size){
+    for (int r = 0; r < size; r++){}
+    }
+    
+    int countWords(string arr[], int size) {
+    int count = 0;
+    for (int i = 0; i < size; i++) {
+        if (arr[i] != "") {
+            count++;
+        }
+    }
+    return count;
     }
 
 int main() {
@@ -47,14 +61,33 @@ int main() {
     auto startInit = high_resolution_clock::now();
     initializeBook(dictinary, index);
     auto endInit = high_resolution_clock::now();
+    
+    auto startLoad = high_resolution_clock::now();
+    bool loaded = loading(dictinary, index, "dictionary_small.txt");
+    auto endLoad = high_resolution_clock::now();
 
     if (debug == true){
         cout << setfill('*') << setw(30) << "" << endl;
         cout << "1000 words on a small dictinary" << endl;
         cout << setfill('*') << setw(30) << "" << endl;
+       
         
     auto durationInit = duration_cast<microseconds>(endInit - startInit).count();
     cout << "initialization took: " << durationInit << " microseconds" << endl;
+    
+    auto durationLoad = duration_cast<microseconds>(endLoad - startLoad).count();
+        cout << "Loading took " << durationLoad << " microseconds" << endl;
+    
+    
+    
+    auto startPrint = high_resolution_clock::now();
+    printDictionary(dictinary, index);
+    auto endPrint = high_resolution_clock::now();
+    
+    auto startCount = high_resolution_clock::now();
+    int totalWords = countWords(dictinary, index);
+    auto endCount = high_resolution_clock::now();
+        
     
     ifstream fin("dictionary_small.txt");
     string words;
@@ -67,7 +100,15 @@ int main() {
         }
         fin.close();
         
-    auto end = high_resolution_clock::now();    // record time after execution
+    auto durationPrint = duration_cast<microseconds>(endPrint - startPrint).count();
+    cout << "Printing took " << durationPrint << " microseconds" << endl;
+    
+    auto durationCount = duration_cast<microseconds>(endCount - startCount).count();
+    cout << "Word count took " << durationCount << " microseconds" << endl;
+    
+    
+    
+    auto end = high_resolution_clock::now();
 
         
   
