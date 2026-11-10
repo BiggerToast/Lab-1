@@ -1,0 +1,90 @@
+/////////////////////////////////////////////////////////////////////
+// Your name: Esequiel Casillas
+// Date: 11/10/2026
+// Class: CSCI 1470.0X
+// Semester: Fall 2026
+// CSCI 1470 Instructor: Dr. Jonatan Reyes
+// Program Description: 
+///////////////////////////////////////////////////////////////////// 
+#include <iostream>
+#include <string>
+#include <iomanip>
+#include <fstream>
+#include <algorithm>
+
+using namespace std;
+const bool debug = true;
+
+    const int max_word = 466551;
+
+void LoadDictionary(string index[], bool &stat){
+    
+    ifstream fin("dictionary_small.txt");
+    
+    if (!fin) {
+        stat = true;
+    } else {
+    int t = 0;
+    string text;
+    
+        while(t < max_word && fin >> texts) {
+          index[t] = texts;
+          t++;
+        }
+    fin.close();
+        }
+    }
+
+    void initializeArray(string index[], int max_word){
+        for (int i = 0; i < max_word; i++){
+            index[i] = "";
+        }
+    }
+int main()
+{
+    int All_tries = 3;
+    int attemtps = 0;
+    char choice = 'Y';
+    
+    int searchtype = 0;
+    bool fileFlag = false;
+    
+    string usertxt;
+    
+    string* index = new string[max_word];
+    
+    ifstream setIn("dictionary_small.txt");
+    if(setIn){
+        setIn >> All_tries;
+        setIn >> searchtype;
+        setIn.close();
+    }
+    
+    
+        cout << setfill('*') << setw(30) << "" << endl;
+        cout << "spell checker dictinary" << endl;
+        cout << setfill('*') << setw(30) << "" << endl;
+    
+    
+    do{
+        cout << "please enter a word: ";
+        cin >> usertxt;
+        
+        LoadDictionary(index, fileFlag);
+        
+        attemtps++;
+    if(attemtps >= )
+        
+    
+    
+    if (fileFlag) {
+    return 0;
+    }
+    
+    return 0;
+}
+    //if (debug){
+    //    auto startLinar = high_resolution_clock::now();
+    //    LinarDictionary(dictinary, index);
+    //    auto endLinar = high_resolution_clock::now();
+    //}
