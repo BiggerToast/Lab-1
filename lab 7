@@ -27,8 +27,8 @@ void LoadDictionary(string index[], bool &stat){
     int t = 0;
     string text;
     
-        while(t < max_word && fin >> texts) {
-          index[t] = texts;
+        while(t < max_word && fin >> text) {
+          index[t] = text;
           t++;
         }
     fin.close();
@@ -40,51 +40,77 @@ void LoadDictionary(string index[], bool &stat){
             index[i] = "";
         }
     }
+    
+    bool searchIndex(string index[], string target, int searching){
+        if (searching == 0){
+            for(int i = 0; i< max_word; i++){
+                if(index[i] == target){
+                    return true;
+                }
+            }
+        }
+    return false;
+    }
+    
 int main()
 {
     int All_tries = 3;
-    int attemtps = 0;
-    char choice = 'Y';
-    
-    int searchtype = 0;
-    bool fileFlag = false;
-    
-    string usertxt;
-    
-    string* index = new string[max_word];
+    int searching = 0;
     
     ifstream setIn("dictionary_small.txt");
     if(setIn){
         setIn >> All_tries;
-        setIn >> searchtype;
+        setIn >> searching;
         setIn.close();
     }
     
+    bool fileFlag = false;
+    string* index = new string[max_word];
+    
+        initializeArray(index, max_word);
+        LoadDictionary(index, fileFlag);
+        
+    if (fileFlag) {
+    return 0;
+    }
     
         cout << setfill('*') << setw(30) << "" << endl;
         cout << "spell checker dictinary" << endl;
         cout << setfill('*') << setw(30) << "" << endl;
-    
+        
+    char choice = 'Y';
+    string usertxt;
+    int attemtps = 0;
     
     do{
         cout << "please enter a word: ";
         cin >> usertxt;
         
-        LoadDictionary(index, fileFlag);
-        
+        bool found = searchIndex(index, usertxt, searching);
+        if(found){
+            cout << "the word " << usertxt << " has been found in the dictionary_small" <<endl;
+            cout << endl;
+        }
+        else{
         attemtps++;
-    if(attemtps >= )
-        
+        cout << "unfortunatly " << usertxt << " could not be found in dictionary_small" << endl;
+        cout << endl;
+            }
+    if(attemtps >= All_tries)   {
+        cout << "you have reached the maximun number (" << All_tries << ") of mistakes" << endl;
+        break;
+                                }
+        cout << "do you want to continue(Y/N): ";
+        cin >> choice;
+      }    while(choice == 'Y' || choice == 'y');
     
     
-    if (fileFlag) {
-    return 0;
-    }
     
-    return 0;
-}
-    //if (debug){
+    //if (debug == true){
     //    auto startLinar = high_resolution_clock::now();
     //    LinarDictionary(dictinary, index);
     //    auto endLinar = high_resolution_clock::now();
     //}
+    
+    return 0;
+}
