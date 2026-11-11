@@ -15,20 +15,18 @@
 
 using namespace std;
 using namespace std::chrono;
-const bool debug = false;
 
-    const int max_word = 466551;
+    const int max_word = 7458; // it can be switched to dictinary.txt
+    // but my gdb wont allow it and might be more difficult for my laptop
+    const bool debug = true;
 
-void LoadDictionary(string index[], bool &stat){
-    
+void LoadDictionary(string index[], bool &stat){ //this is where the index checks the dictionary_small
     ifstream fin("dictionary_small.txt");
-    
     if (!fin) {
-        stat = true;
+        stat = true; // if the statment is true it returns it
     } else {
     int t = 0;
     string text;
-    
         while(t < max_word && fin >> text) {
           index[t] = text;
           t++;
@@ -38,13 +36,13 @@ void LoadDictionary(string index[], bool &stat){
     }
 
     void initializeArray(string index[], int max_word){
-        for (int i = 0; i < max_word; i++){
+        for (int i = 0; i < max_word; i++){// initialize the Array
             index[i] = "";
         }
     }
     
     bool searchIndex(string index[], string target, int searching){
-        if (searching == 0){
+        if (searching == 0){ //checks for the tartgeted index text
             for(int i = 0; i< max_word; i++){
                 if(index[i] == target){
                     return true;
@@ -53,21 +51,40 @@ void LoadDictionary(string index[], bool &stat){
         }
     return false;
     }
+    bool searchBinary(string index[], string target, int max_word) {
+    int low = 0; // where binary takes place
+    int high = high - 1;
+
+    while (low <= high) {
+        int mid = low + (high - low) / 2;
+
+        if (index[mid] == target) {
+            return true;
+        }
+        else if (index[mid] < target) {
+            low = mid + 1;
+        }
+        else {
+            high = mid - 1;
+        }
+    }
+    return false;
+    }
     
 int main()
 {
-    int All_tries = 3;
-    int searching = 2;
+    int All_tries = 3; // sets it to where u can have up to 3 mistakes
+    int searching;
     
-    ifstream setIn("dictionary_small.txt");
+    ifstream setIn("settings.txt"); // you can switch between setting.txt, _2, or _3//
     if(setIn){
         setIn >> All_tries;
-        setIn >> searching;
+        setIn >> searching; // im having a lot of trouble with switching to diffrent settings
         setIn.close();
     }
     
-    bool fileFlag = false;
-    string* index = new string[max_word];
+    bool fileFlag = false; 
+    string* index = new string[max_word]; // allows max word to get more texts
     
         initializeArray(index, max_word);
         LoadDictionary(index, fileFlag);
@@ -76,58 +93,62 @@ int main()
     return 0;
     }
     
-        cout << setfill('*') << setw(30) << "" << endl;
+        cout << setfill('*') << setw(30) << "" << endl; // the first line the script
         cout << "spell checker dictinary" << endl;
         cout << setfill('*') << setw(30) << "" << endl;
         
-    char choice = 'Y';
-    string usertxt;
+    char choice = 'Y'; // it checks for if you had typed "y" so it can stop the program
+    string usertxt; // this is the users input
     int attemtps = 0;
     
     do{
-            auto startLinarsort = high_resolution_clock::now();
-        cout << "please enter a word: ";
+            auto startLinarsort = high_resolution_clock::now(); // this begins the clock
+        cout << "please enter a word: "; // enters the first words for users input
         cin >> usertxt;
-        bool found = searchIndex(index, usertxt, searching);
+        bool found = searchIndex(index, usertxt, searching); // calls the return function
         
-        if(found){
+        if(found){ // if its correct
             cout << "the word " << usertxt << " has been found in the dictionary_small" <<endl;
             cout << endl;
         }
-        else{
-        attemtps++;
+        else{ // if its wrong
+        attemtps++; // adds 1 to the mistake counter
         cout << "unfortunatly " << usertxt << " could not be found in dictionary_small" << endl;
         cout << endl;
             }
-        if(debug){
-            if(searching == 4){
+        if(debug){ // its the counter for the debug
+            bool found = false;
+            if(searching == 3){
                found = searchIndex(index, usertxt, max_word);
             }
-            //else if(searching == 2){
-            //    sort(index, index + max_word);
-            //    found = searchIndex(index, usertxt, max_word);
-            //}
-            //else if(searching == 3){
-            //    sort(index, index = max_word);
-            //    found = searchBinary(index, usertxt, max_word)
-            //}
+            else if(searching == 4){
+                sort(index, index + max_word);
+                found = searchIndex(index, usertxt, max_word);
+            }
+            else if(searching == 2){
+                sort(index, index + max_word);
+                found = searchBinary(index, usertxt, max_word);
+            }
             auto endLinarsort = high_resolution_clock::now();
             auto durationCount = duration_cast<microseconds>(endLinarsort - startLinarsort).count();
-            cout << "Linear unsorted search took " << durationCount << " microseconds." << endl;
+                if (searching == 3) {
+                cout << "Linear unsort search took " << durationCount << " microseconds." << endl;
+                }
+                else if (searching == 4) {
+                cout << "Linear search took " << durationCount << " microseconds." << endl;
+                }
+                else if (searching == 2) {
+                cout << "Binary search took " << durationCount << " microseconds." << endl;
+                }
             }
         
-    if(attemtps >= All_tries)   {
+    if(attemtps >= All_tries)   {// when the maximun of tries has been reached = terminate
         cout << "you have reached the maximun number (" << All_tries << ") of mistakes" << endl;
         break;
                                 }
         cout << "do you want to continue(Y/N): ";
-        cin >> choice;
+        cin >> choice; // if "Y" then continue anything else = terminate
       }    while(choice == 'Y' || choice == 'y');
-    
-    
-    //if (debug == true){
-    //    LinarDictionary(dictinary, index);
-    //}
-    
+
     return 0;
 }
