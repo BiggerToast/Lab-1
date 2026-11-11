@@ -10,10 +10,12 @@
 #include <string>
 #include <iomanip>
 #include <fstream>
+#include <chrono>
 #include <algorithm>
 
 using namespace std;
-const bool debug = true;
+using namespace std::chrono;
+const bool debug = false;
 
     const int max_word = 466551;
 
@@ -55,7 +57,7 @@ void LoadDictionary(string index[], bool &stat){
 int main()
 {
     int All_tries = 3;
-    int searching = 0;
+    int searching = 2;
     
     ifstream setIn("dictionary_small.txt");
     if(setIn){
@@ -83,10 +85,11 @@ int main()
     int attemtps = 0;
     
     do{
+            auto startLinarsort = high_resolution_clock::now();
         cout << "please enter a word: ";
         cin >> usertxt;
-        
         bool found = searchIndex(index, usertxt, searching);
+        
         if(found){
             cout << "the word " << usertxt << " has been found in the dictionary_small" <<endl;
             cout << endl;
@@ -96,6 +99,23 @@ int main()
         cout << "unfortunatly " << usertxt << " could not be found in dictionary_small" << endl;
         cout << endl;
             }
+        if(debug){
+            if(searching == 4){
+               found = searchIndex(index, usertxt, max_word);
+            }
+            //else if(searching == 2){
+            //    sort(index, index + max_word);
+            //    found = searchIndex(index, usertxt, max_word);
+            //}
+            //else if(searching == 3){
+            //    sort(index, index = max_word);
+            //    found = searchBinary(index, usertxt, max_word)
+            //}
+            auto endLinarsort = high_resolution_clock::now();
+            auto durationCount = duration_cast<microseconds>(endLinarsort - startLinarsort).count();
+            cout << "Linear unsorted search took " << durationCount << " microseconds." << endl;
+            }
+        
     if(attemtps >= All_tries)   {
         cout << "you have reached the maximun number (" << All_tries << ") of mistakes" << endl;
         break;
@@ -105,11 +125,8 @@ int main()
       }    while(choice == 'Y' || choice == 'y');
     
     
-    
     //if (debug == true){
-    //    auto startLinar = high_resolution_clock::now();
     //    LinarDictionary(dictinary, index);
-    //    auto endLinar = high_resolution_clock::now();
     //}
     
     return 0;
