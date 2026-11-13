@@ -74,14 +74,16 @@ void LoadDictionary(string index[], bool &stat){ //this is where the index check
 int main()
 {
     int All_tries = 3; // sets it to where u can have up to 3 mistakes
-    int searching;
+    string searching;
+    string filename;
     
-    ifstream setIn("settings.txt"); // you can switch between setting.txt, _2, or _3//
-    if(setIn){
-        setIn >> All_tries;
-        setIn >> searching; // im having a lot of trouble with switching to diffrent settings
-        setIn.close();
-    }
+
+    cin >> filename;
+    ifstream fin(filename);
+        fin >> All_tries;
+        fin >> searching; // im having a lot of trouble with switching to diffrent settings
+        fin.close();
+    
     
     bool fileFlag = false; 
     string* index = new string[max_word]; // allows max word to get more texts
