@@ -42,15 +42,24 @@ void LoadDictionary(string index[], bool &stat){ //this is where the index check
     }
     
     bool searchIndex(string index[], string target, int searching){
-        if (searching == 0){ //checks for the tartgeted index text
+        
+                }if (searching == 0){ //checks for the tartgeted index text
             for(int i = 0; i< max_word; i++){
                 if(index[i] == target){
                     return true;
-                }
             }
         }
     return false;
     }
+
+    //bool Linearsearh(const string dictionary_small[], string searching){
+    //    int position = 0;
+    //    bool found = false;
+    //    while(position <= max_words) && (!found)
+    //    
+    //}
+
+
     bool searchBinary(string index[], string target, int max_word) {
     int low = 0; // where binary takes place
     int high = high - 1;
