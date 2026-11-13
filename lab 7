@@ -4,7 +4,7 @@
 // Class: CSCI 1470.0X
 // Semester: Fall 2026
 // CSCI 1470 Instructor: Dr. Jonatan Reyes
-// Program Description: 
+// Program Description: it checks the spelling for the inputed word as well as check the ammout of time it took
 ///////////////////////////////////////////////////////////////////// 
 #include <iostream>
 #include <string>
