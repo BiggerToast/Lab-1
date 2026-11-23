@@ -9,6 +9,7 @@
 
 #include <iostream>
 #include <string>
+#include "menu.h"
 
 using namespace std;
 // to do list
@@ -20,17 +21,34 @@ using namespace std;
 // repeat the class loop until the resturant closes by creating an exit
 
 
-class Mcdonalds{
-    private:
 
+void drive(Mcdonalds mc){
+    mc.introduction();
+}
 
-    public:
-
-
-};
 
 int main{
+    string name;
+    int << party;
+
+    cin >> name;
+    mcdonalds customer(name);
+
+    cout << "how many members will there be with you today";
+    cin >> party
+
+    //create a loop on depended on how many members are participating
+    Mcdonalds family(name);
+    family.setName(name);
+
+    intro(customer);
+    for (int i = 0; i < party; i++){
+        intro(members[i]);
+    }
 
 
+    //after getting an order they will proceed to the next window
+    //then the order will be repeated and it will have the total amount
+    //after that there will be given an option to take the next order or close
     return 0;
 }
