@@ -1,0 +1,51 @@
+#include <iostream>
+#include <string>
+
+void Mcdonald::introduce() {
+    string continue;
+    bool order = true
+
+    cout << "hello welcome to mcdonalds can i get a name for the order" << name << "?" << endl;
+    
+    cin >> continue;
+    while (order == true){
+        if(continue == "yes"){
+            order = false;
+        } 
+        else{
+        //    cout >> "what else would you like today sir/mam" << endl;
+        //    back to food option loop.
+            cout >> "will that be all?" << endl;
+            cin >> continue;
+        }
+        cout << "proceed to the next window please";
+    }
+    }
+
+    Mcdonalds::Mcdonalds(){
+    name = "";
+    // order from the menu or food options
+    // total amout of food they got to add to the total
+    //
+    }
+
+    Mcdonalds::Mcdonalds(string newName){
+    name = newName;
+    // order from the menu or food options
+    // total amout of food they got to add to the total
+    //
+    }
+
+    string Mcdonalds::getName() const {
+       return name;
+    }
+
+   void Mcdonalds::setName(string newName) {
+       name = newName;
+   }
+//void handleDeposit(BankAccount& account) {
+//    double amount;
+//    cout << "Enter deposit amount: ";
+//    cin >> amount;
+//    account.deposit(amount); // Modifies the original object
+//}
