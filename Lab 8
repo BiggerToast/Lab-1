@@ -1,0 +1,36 @@
+/////////////////////////////////////////////////////////////////////
+// Name: Esequiel Casillas
+// Date: 11/23-25/2026
+// Class: CSCI 1470.0X
+// Semester: Fall 2026
+// CSCI 1470 Instructor: Dr. Jonatan Reyes
+// Program Description: its based on a resturant reserve, order, and tab
+///////////////////////////////////////////////////////////////////// 
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+// to do list
+// create an input that puts a table for cin ammount of names on a controlled loop
+// create a menu with a vast ammout of orders perferibly if i can exam the details of the food
+// each of the food has there own ingredients and would show to the total price
+// each of the orders would add on into the total ammout of price
+// call the first person/name to take the tab and exit or be allowed to order more.
+// repeat the class loop until the resturant closes by creating an exit
+
+
+class Mcdonalds{
+    private:
+
+
+    public:
+
+
+};
+
+int main{
+
+
+    return 0;
+}
