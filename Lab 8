@@ -19,6 +19,7 @@ using namespace std;
 // each of the orders would add on into the total ammout of price
 // call the first person/name to take the tab and exit or be allowed to order more.
 // repeat the class loop until the resturant closes by creating an exit
+// remove party members
 
 
 
