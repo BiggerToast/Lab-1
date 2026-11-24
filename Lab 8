@@ -14,7 +14,13 @@
 
 using namespace std;
 //what to do list
-//
+//ask for the name of the order
+//list all the order and prices from the MenuOptions
+//allow the user to pick out an option from the MenuOptions using char
+//give the user a loop to continue to pick options from the MenuOptions
+// as the order continues to grow add up the amout of order with its prices
+// give the user to exit the MenuOptions from a flag loop
+// give the user the total of ammout of orders they got
 
 
 void drive(Mcdonalds M){
@@ -28,6 +34,7 @@ int main(){
     bool order = true;
     char itemChoice;
     double total = 0.0;
+    vector<string>orderedItems;
     
 
     Mcdonalds M;
@@ -54,14 +61,11 @@ int main(){
             order = false;
         } 
         
+        cout << endl << "-thank you-" << endl;
         cout << fixed << setprecision(2);
         cout << "Your total is: $" << total << " " << name << endl;
         cout << "proceed to the next window please";
     }
 
-
-    //after getting an order they will proceed to the next window
-    //then the order will be repeated and it will have the total amount
-    //after that there will be given an option to take the next order or close
     return 0;
 }
