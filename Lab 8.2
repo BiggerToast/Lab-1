@@ -1,16 +1,50 @@
 #ifndef MENU_H
 #define MENU_H
 
+#include <string>
+#include <vector>
+
 using namespace std;
 
-class Mcdonalds{
-    private:
+struct fooditems {
+    string name;
+    double price;
+};
 
+class MenuOptions {
+private:
+    vector<string> food = {
+        "Nuggets", "McChicken", "CheeseBurger", "McCrispy",
+        "McFlurry", "Cookie", "pies", "strips",
+        "Spicy", "Ribs", "BigMac", "QuarterPounder"
+    };
+    vector<double> price = {
+        5.99, 3.09, 2.19, 6.79,
+        4.09, 1.99, 2.50, 4.07,
+        3.00, 6.09, 5.19, 6.39
+    };
 
     public:
-    void introduce();
+    MenuOptions();
+    void printMenu() const;
+    void addItem(const string& itemName, double itemPrice);
+    double getPrice(char itemChar) const;
+    string getChoice(char itemChar) const;
+    };
+
+
+class Mcdonalds {
+    private:
+    string name;
+    vector<fooditems> order;
+
+    public:
     Mcdonalds();
-    Mcdonalds(string newName);
-    string getName() const; 
+    void introduction();
+    void placeorder(const MenuOptions& menu);
+    void printReceipt() const;
+    string getName() const;
     void setName(string newName);
-};
+    };
+
+    #endif
