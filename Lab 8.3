@@ -1,41 +1,43 @@
-#include <iostream>
-#include <string>
+    #include <iostream>
+    #include <string>
+    #include <cctype>
+    #include <iomanip>
+    #include "menu.h"
 
-void Mcdonald::introduce() {
-    string continue;
-    bool order = true
+    using namespace std;
 
+    void Mcdonalds::introduction() {
     cout << "hello welcome to mcdonalds can i get a name for the order" << name << "?" << endl;
+    }
     
-    cin >> continue;
-    while (order == true){
-        if(continue == "yes"){
-            order = false;
-        } 
-        else{
-        //    cout >> "what else would you like today sir/mam" << endl;
-        //    back to food option loop.
-            cout >> "will that be all?" << endl;
-            cin >> continue;
-        }
-        cout << "proceed to the next window please";
+    MenuOptions::MenuOptions(){}
+    
+    void MenuOptions::printMenu() const {
+    for (size_t i = 0; i < food.size(); ++i) {
+        char optionLetter = static_cast<char>('A' + i);
+        cout << optionLetter << ". " << food[i] << " - $" << price[i] << endl;
     }
+    }
+    
+    //void MenuOptions::addItem(const string& itemName, double itemPrice) {
+    //food.push_back(itemName);
+    //price.push_back(itemPrice);
+    //}
+    
+    double MenuOptions::getPrice(char itemChar) const {
+    char upperChar = toupper(static_cast<unsigned char>(itemChar));
+    int index = upperChar - 'A';
+
+    if (index >= 0 && index < static_cast<int>(food.size())) {
+        cout << "Added " << food[index] << " ($" << price[index] << ")" << endl;
+        return price[index];
     }
 
-    Mcdonalds::Mcdonalds(){
-    name = "";
-    // order from the menu or food options
-    // total amout of food they got to add to the total
-    //
+    cout << "Invalid item number." << endl;
+    return 0.0;
     }
 
-    Mcdonalds::Mcdonalds(string newName){
-    name = newName;
-    // order from the menu or food options
-    // total amout of food they got to add to the total
-    //
-    }
-
+    
     string Mcdonalds::getName() const {
        return name;
     }
@@ -43,9 +45,6 @@ void Mcdonald::introduce() {
    void Mcdonalds::setName(string newName) {
        name = newName;
    }
-//void handleDeposit(BankAccount& account) {
-//    double amount;
-//    cout << "Enter deposit amount: ";
-//    cin >> amount;
-//    account.deposit(amount); // Modifies the original object
-//}
+    Mcdonalds::Mcdonalds(){
+    name = "";
+    }
