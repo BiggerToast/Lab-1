@@ -4,47 +4,59 @@
 // Class: CSCI 1470.0X
 // Semester: Fall 2026
 // CSCI 1470 Instructor: Dr. Jonatan Reyes
-// Program Description: its based on a resturant reserve, order, and tab
+// Program Description: its based on a resturant drivethro order, and tab
 ///////////////////////////////////////////////////////////////////// 
 
 #include <iostream>
+#include <iomanip>
 #include <string>
 #include "menu.h"
 
 using namespace std;
-// to do list
-// create an input that puts a table for cin ammount of names on a controlled loop
-// create a menu with a vast ammout of orders perferibly if i can exam the details of the food
-// each of the food has there own ingredients and would show to the total price
-// each of the orders would add on into the total ammout of price
-// call the first person/name to take the tab and exit or be allowed to order more.
-// repeat the class loop until the resturant closes by creating an exit
-// remove party members
+//what to do list
+//
 
 
-
-void drive(Mcdonalds mc){
-    mc.introduction();
+void drive(Mcdonalds M){
+    M.introduction();
 }
 
 
-int main{
+int main(){
     string name;
-    int << party;
+    string choice;
+    bool order = true;
+    char itemChoice;
+    double total = 0.0;
+    
 
+    Mcdonalds M;
+    MenuOptions menu;
+    
+    M.introduction();
     cin >> name;
-    mcdonalds customer(name);
-
-    cout << "how many members will there be with you today";
-    cin >> party
-
-    //create a loop on depended on how many members are participating
-    Mcdonalds family(name);
-    family.setName(name);
-
-    intro(customer);
-    for (int i = 0; i < party; i++){
-        intro(members[i]);
+    M.setName(name);
+    
+    
+    while (order == true){
+        
+        menu.printMenu();
+        
+        cout << "Enter your order from the following list using A-L" << endl;
+        cin >> itemChoice;
+        
+        total += menu.getPrice(itemChoice);
+        
+        cout << "will that be all? (yes/no)" << endl;
+        cin >> choice;
+        
+        if(choice == "yes"){
+            order = false;
+        } 
+        
+        cout << fixed << setprecision(2);
+        cout << "Your total is: $" << total << " " << name << endl;
+        cout << "proceed to the next window please";
     }
 
 
